@@ -5,6 +5,10 @@ A Kong plugin to implement Google reCAPTCHA validation in services or routes
 
 This plugin simplifies **Google reCAPTCHA** validation by automatically extracting the reCAPTCHA response from incoming request headers or the request body. It then calls Google's validation endpoint to verify the token. Based on the validation status and a configurable score threshold (for reCAPTCHA v3/Enterprise), the plugin either forwards the request to the upstream service or returns a **customizable HTTP status code** and error message to the client. This allow for flexible handling of failed reCAPTCHA verifications.
 
+## Kong Compatibility
+
+This plugin was developed and tested against Kong Gateway 3.6.x. While it's designed to be forward-compatible, we recommend validating its functionality in newer Kong versions.
+
 ```mermaid
 sequenceDiagram
   Frontend ->> reCAPTCHA: Execute function to get<br/>reCAPTCHA token
@@ -38,9 +42,9 @@ sequenceDiagram
 
 ### Dependencies
 
-- This plugin requires Lua version 5.1 or higher.
-- lua-resty-http
-- lua-cjson
+- lua >= 5.1
+- lua-resty-http ~> 0.17.1
+- lua-cjson ~> 2.1.0
 
 ## Installing
 
