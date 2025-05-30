@@ -44,7 +44,7 @@ sequenceDiagram
 
 ## Installing
 
-This plugin is provided as luarocks module:
+This plugin is provided as a Luarocks module:
 
 ```sh
 luarocks install kong-google-recaptcha-plugin
@@ -87,14 +87,14 @@ plugins:
 | config.site_key<br>`required`                        | `string`                         | Site Key from Google                                                                                                                                                                                         |
 | config.secret_key<br>`required`                      | `string`                         | Secret Key from Google (API Key for reCAPTCHA Enterprise)                                                                                                                                                    |
 | config.action_name<br>`required`                     | `string`                         | The reCAPTCHA action name defined in integration.<br>This value must be equal to configured in the website, otherwise the plugin will block the request.                                                     |
-| config.version<br>`optional`                         | `string`<br>can be only v2 or v3 | Google reCAPTCHA version<br>default: V2                                                                                                                                                                      |
-| config.score_threshold<br>`optional`                 | `number`<br>between 0 and 1      | Score threshold to validate against Google reCAPTCHA response<br>default: 0.8                                                                                                                                |
+| config.version<br>`optional`                         | `string`<br>can be only v2 or v3 | Google reCAPTCHA version<br>default: `v2`                                                                                                                                                                      |
+| config.score_threshold<br>`optional`                 | `number`<br>between 0 and 1      | Score threshold to validate against Google reCAPTCHA response<br>default: `0.8`                                                                                                                                |
 | config.enterprise<br>`optional`                      | `boolean`                        | Indicates whether to use reCAPTCHA Enterprise.<br>Set to `true` to enable, or `false` to disable.<br>default: `false`                                                                                        |
 | config.project_id<br>`optional`                      | `string`                         | Specifies the project ID for reCAPTCHA Enterprise.<br>Required if `config.enterprise` is set to `true`                                                                                                       |
 | config.captcha_response_name<br>`optional`           | `string`                         | The name of the header or body property to look for Google reCAPTCHA response token<br>default: `g-recaptcha-response`                                                                                       |
 | config.error_message<br>`optional`                   | `string`                         | Set a custom error message to return when the Google reCAPTCHA validation is failed<br>default: `reCAPTCHA verification failed`                                                                              |
 | config.error_code<br>`optional`                      | `number`                         | Set a custom error code to return when the Google reCAPTCHA validation is failed<br>default: `403`                                                                                                           |
-| config.display_errors<br>`optional`                  | `boolean`                        | Display errors to client on failure responses.<br>default: `false`                                                                                                                                           |
+| config.display_errors<br>`optional`                  | `boolean`                        | When set to `true`, specific error details will be included in the failure responses returned to the client.<br>default: `false`                                                                                                                                           |
 | config.skip_recaptcha_for_internal_ips<br>`optional` | `boolean`                        | When set to `true`, reCAPTCHA valitation will be skipped for requests from internal IP addresses (RFC1918).<br>Set to `true` to allow internal traffic to bypass reCAPTCHA verification.<br>default: `false` |
 
 > **_NOTE_**: This plugin will first search for the reCAPTCHA response in the request header named as configured in `config.captcha_response_name`. If not found, it will then check the request body for an attribute with the same name. If the token is not provided in either the headers or the body, the validation will fail.
