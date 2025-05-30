@@ -16,14 +16,14 @@ sequenceDiagram
   Kong ->> reCAPTCHA: Validate reCAPTCHA token and response
   Note over Kong,reCAPTCHA: POST https://www.google.com/recaptcha/api/siteverify<br/>?secret={{config.secret_key}}<br/>&response={{reCAPTCHAResponseCode}}<br/>&remoteip={{clientIp}}
   reCAPTCHA -->> Kong: Returns response validattion
-  Note over reCAPTCHA,Kong: score: 0.9<br/>action: signup<br/>hostname: mysite.foo.com
+  Note over reCAPTCHA,Kong: $.success: true<br>$.score: 0.9 (only for v3)<br/>$.action: signup<br/>$.hostname: mysite.foo.com
   Kong --> Kong: Validate response
   end
   alt Plugin Google reCAPTCHA Enterprise
   Kong ->> reCAPTCHA: Validate reCAPTCHA token and response
   Note over Kong,reCAPTCHA: POST https://recaptchaenterprise.googleapis.com/v1<br/>/projects/{{config.project_id}}/assessments<br/>?key={{config.secret_key}}<br/><br/>Headers:<br/>Referer: {{frontendRefererHeader}}<br/><br/>Body: { "event":{"token": "{{reCAPTCHAResponseCode}},<br/>"expectedAction": "{{config.action}}",<br/> "siteKey": "{{config.site_key}}"}}
   reCAPTCHA -->> Kong: Returns response validattion
-  Note over reCAPTCHA,Kong: $.tokenProperties.valid: true<br/>$.tokenProperties.action: signup<br/>$.riskAnalysis.score: 0.9
+  Note over reCAPTCHA,Kong: $.tokenProperties.valid: true<br/>$.tokenProperties.action: signup<br/>$.riskAnalysis.score: 0.9 (only for v3)
   Kong --> Kong: Validate response
   end
   alt Successful verification
