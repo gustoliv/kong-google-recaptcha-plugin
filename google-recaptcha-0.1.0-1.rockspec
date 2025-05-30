@@ -1,4 +1,4 @@
-local plugin_name = "google-recaptcha"
+local plugin_name = "kong-google-recaptcha-plugin"
 local package_version = "0.1.0"
 local rockspec_revision = "1"
 
