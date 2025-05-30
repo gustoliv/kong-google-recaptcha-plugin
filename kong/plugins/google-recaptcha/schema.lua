@@ -91,7 +91,7 @@ return {
               type = "boolean",
               default = false,
               required = false,
-              description = "Display errors on failure responses"
+              description = "When set to 'true', specific error details will be included in the failure responses returned to the client."
             },
           },
           {
