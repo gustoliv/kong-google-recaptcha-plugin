@@ -5,13 +5,13 @@ local rockspec_revision = "1"
 package = plugin_name
 version = package_version .. "-" .. rockspec_revision
 source = {
-  url = "git://github.com/gustoliv/kong-plugin-google-recaptcha",
+  url = "git://github.com/gustoliv/kong-google-recaptcha-plugin",
   tag = "main"
 }
 
 description = {
   summary = "A Kong plugin to implement Google reCAPTCHA validation in services or routes",
-  homepage = "https://github.com/gustoliv/kong-plugin-google-recaptcha",
+  homepage = "https://github.com/gustoliv/kong-google-recaptcha-plugin",
   license = "Apache 2.0",
 }
 
